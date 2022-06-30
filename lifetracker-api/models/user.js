@@ -1,5 +1,7 @@
+const bcrypt = require("bcrypt")
 const db = require("../db")
-const { UnauthorizedError } = require("../utils/errors")
+const { BCRYPT_WORK_FACTOR } = require("../config")
+const { BadRequestError, UnauthorizedError } = require("../utils/errors")
 
 class User {
     static async login(credentials) {
@@ -12,6 +14,50 @@ class User {
 
     static async register(credentials) {
         // User can successfully register with proper credentials
+        const requiredFields = ["email", "username", "firstname", "lastname", "password", "confirmPass"]
+        requiredFields.forEach(field => {
+            if (!credentials.hasOwnProperty(field)) {
+                throw new BadRequestError(`Missing ${field} in request body.`)
+            }
+        })
+
+        const existingUser = await User.fetchUserByEmail(credentials.email)
+        if (existingUser) {
+            throw new BadRequestError(`Duplicate email: ${credentials.email}`)
+        }
+
+        // const hashedPassword = await bcrypt.hash(credentials.password, BCRYPT_WORK_FACTOR)
+        const lowercasedEmail = credentials.email.toLowerCase()
+
+        const result = await db.query(`
+            INSERT INTO users (
+                email,
+                username,
+                firstname,
+                lastname,
+                password
+            )
+            VALUES ($1, $2, $3, $4, $5)
+            RETURNING id, email, username, updated_at, created_at;
+        `, [lowercasedEmail,credentials.username,credentials.password, credentials.firstname, credentials.lastname])
+
+        const user = result.rows[0]
+
+        return user
+    }
+
+    static async fetchUserByEmail(email) {
+        if (!email) {
+            throw new BadRequestError("No email provided")
+        }
+
+        const query =  `SELECT * FROM users WHERE email = $1`
+
+        const result = await db.query(query, [email.toLowerCase()])
+
+        const user = result.rows[0]
+
+        return user
     }
 }
 
