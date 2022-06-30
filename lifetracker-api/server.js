@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors")
 const morgan = require("morgan")
 const { PORT } = require("./config")
+const authRoutes = require("./routes/auth")
 
 const { BadRequestError, NotFoundError } = require("./utils/errors")
 const app = express()
@@ -13,9 +14,16 @@ app.use(express.json())
 // log request info
 app.use(morgan("tiny"))
 
+app.use("/auth", authRoutes)
+
+app.get("/", async(req, res, next) => {
+    res.status(200).json({ ping: "pong"})
+})
+
 app.use((req, res, next) => {
     return next(new NotFoundError())
 })
+
 
 app.use((req, res, next) => {
     const status = err.status || 500
