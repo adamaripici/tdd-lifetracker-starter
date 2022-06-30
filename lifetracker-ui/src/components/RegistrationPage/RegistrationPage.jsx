@@ -3,10 +3,11 @@ import RegistrationForm from "../RegistrationForm/RegistrationForm"
 
 import "./RegistrationPage.css"
 
-export default function RegistrationPage() {
+export default function RegistrationPage({setAppState}) {
     return (
         <nav className="registration-page">
-            <RegistrationForm/>
+            <h2>Register</h2>
+            <RegistrationForm setAppState={setAppState}/>
         </nav>
     )
 }

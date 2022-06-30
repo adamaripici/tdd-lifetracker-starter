@@ -1,7 +1,7 @@
 import * as React from "react"
 import "./RegistrationForm.css"
 
-export default function RegistrationForm() {
+export default function RegistrationForm({setAppState}) {
     const [errors, setErrors] = React.useState({})
     const [input, setInput] = React.useState({
         email: "",
@@ -40,7 +40,6 @@ export default function RegistrationForm() {
     console.log(1,input.email)
     return (
         <div className="registration-form">
-          Register
             <div className="form-input">
                 <label htmlFor="email">Email</label>
                 <input

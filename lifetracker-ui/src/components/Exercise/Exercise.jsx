@@ -1,9 +1,9 @@
 import * as React from "react"
+import "./Exercise.css"
 import { useNavigate } from "react-router-dom"
-import "./ActivityPage.css"
 import AccessForbidden from "../AccessForbidden/AccessForbidden"
 
-export default function ActivityPage({ user, setAppState }) {
+export default function Exercise({ user, setAppState }) {
     const navigate = useNavigate()
     const isAuthenticated = Boolean(user?.email)
 
@@ -13,8 +13,8 @@ export default function ActivityPage({ user, setAppState }) {
     }
     if (isAuthenticated) {
         return (
-            <div className="activity-page">
-                Activity Page
+            <div className="exercise">
+                Exercise
             </div>
         )
     } else {
@@ -24,4 +24,5 @@ export default function ActivityPage({ user, setAppState }) {
             </div>
         )
     }
+    
 }

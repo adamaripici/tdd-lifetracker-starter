@@ -1,8 +1,9 @@
 import * as React from "react"
 import { useState } from "react";
+import { BrowserRouter, Routes, Route, Link, NavLink} from "react-router-dom"
 import "./LoginForm.css"
 
-export default function LoginForm() {
+export default function LoginForm({setAppState}) {
     const [errors, setErrors] = useState({})
     const [isLoading, setIsLoading] = useState(false)
     const [input, setInput] = useState({
@@ -57,6 +58,11 @@ export default function LoginForm() {
            </div>
 
            <button className="submit-login" >Login</button>
+           <div className="footer">
+            <p>
+              Don't have an account? Sign up <Link to="/register">here</Link>
+            </p>
+          </div>
         </div>
     )
 }
