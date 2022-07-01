@@ -26,7 +26,7 @@ class User {
             throw new BadRequestError(`Duplicate email: ${credentials.email}`)
         }
 
-        // const hashedPassword = await bcrypt.hash(credentials.password, BCRYPT_WORK_FACTOR)
+        const hashedPassword = await bcrypt.hash(credentials.password, BCRYPT_WORK_FACTOR)
         const lowercasedEmail = credentials.email.toLowerCase()
 
         const result = await db.query(`
@@ -39,7 +39,7 @@ class User {
             )
             VALUES ($1, $2, $3, $4, $5)
             RETURNING id, email, username, updated_at, created_at;
-        `, [lowercasedEmail,credentials.username,credentials.password, credentials.firstname, credentials.lastname])
+        `, [lowercasedEmail,credentials.username,hashedPassword, credentials.firstname, credentials.lastname])
 
         const user = result.rows[0]
 
