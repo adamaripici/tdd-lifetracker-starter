@@ -40,21 +40,23 @@ Implement any of the following features to improve the application:
 ### Walkthrough Video
 
 `TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after adding walkthrough video)
+![ezgif com-gif-maker (16)](https://user-images.githubusercontent.com/55006272/176973437-765f2a60-b9c3-4203-8b4d-dcbddb2a6233.gif)
+![ezgif com-gif-maker (16)](https://user-images.githubusercontent.com/55006272/176973437-765f2a60-b9c3-4203-8b4d-dcbddb2a6233.gif)
 
 `ADD_EMBEDDED_CODE_HERE`
 
 ### Reflection
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
-
+Yes, I felt prepared to do login and register because of the second lab this week. The videos also helped.
 [Add your response here]
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
-  
+ I would change my CSS to implement my own personal style.
 [Add your response here]
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
-
+I wish I finished implementing the back end for activities tab.
 [Add your response here]
 
 ### Open-source libraries used
