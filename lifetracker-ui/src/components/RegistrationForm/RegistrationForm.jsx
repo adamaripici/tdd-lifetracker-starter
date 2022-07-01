@@ -39,7 +39,8 @@ export default function RegistrationForm({setAppState}) {
     
         setInput((f) => ({ ...f, [event.target.name]: event.target.value }))
     }
-    const handleOnSubmit = async () => {
+    const handleOnSubmit = async (event) => {
+      event.preventDefault()
       setIsLoading(true)
       setErrors((e) => ({ ...e, input: null }))
   
@@ -57,12 +58,19 @@ export default function RegistrationForm({setAppState}) {
           username: input.username,
           firstName: input.firstName,
           lastName: input.lastName,
-          password: input.password,
-          passwordConfirm: input.passwordConfirm
+          password: input.password
         })
   
         if (res?.data?.user) {
           setAppState(res.data)
+          setForm({
+            email: "",
+            username: "",
+            firstName: "",
+            lastName: "",
+            password: "",
+            passwordConfirm: "",
+          })
           setIsLoading(false)
           navigate("/activity")
         } else {
@@ -70,7 +78,7 @@ export default function RegistrationForm({setAppState}) {
           setIsLoading(false)
         }
       } catch (err) {
-        console.log(err)
+        console.log(1,err)
         const message = err?.response?.data?.error?.message
         setErrors((e) => ({ ...e, input: message ? String(message) : String(err) }))
         setIsLoading(false)
@@ -127,7 +135,7 @@ export default function RegistrationForm({setAppState}) {
            <div className="form-input">
                 <label htmlFor="name">Password</label>
                 <input
-                    type="text"
+                    type="password"
                     name="password"
                     placeholder="Enter a secure password"
                     value={input.password}
@@ -138,7 +146,7 @@ export default function RegistrationForm({setAppState}) {
            <div className="form-input">
                 <label htmlFor="name">Confirm Password</label>
                 <input
-                    type="text"
+                    type="password"
                     name="passwordConfirm"
                     placeholder="Confirm your password"
                     value={input.passwordConfirm}
