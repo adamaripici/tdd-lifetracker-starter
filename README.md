@@ -1,4 +1,71 @@
 # Project #3: LifeTracker Application
+# Week 3 Assignment: Life Tracker
+
+Submitted by: **Ada Pici**
+
+Deployed Application: [Lifetracker Deployed Site](ADD_LINK_HERE)
+
+## Application Features
+
+### Core Features
+
+- [X] **The Nav Bar:** Implement customized views for users who are logged in vs not logged in.
+  - [X] If the user is logged in, it should display a **Sign Out** button. 
+  - [X] If no user is logged in, it should display **Login** and **Register** buttons
+  - [X] Display a logo on the far left side, and contain links to the individual detailed activity page. 
+- [X] **The Landing Page:** Display a large hero image and a brief blurb on what this application is about
+- [X] **Login Page:** A form that allows users to login with email and password.
+- [X] **Registration Page:** A form that allows the user to sign up with their email, password, username, first name, and last name.
+- [X] When a user first authenticates, they should be redirected to an authenticated view (i.e the detailed activity page). When they sign out, all frontend data should be reset.
+- [X] Users have access to an overview Activity page that show one summary statistic about each of the 3 types of activity tracked.
+- [ ] The API should have a `security` middleware that only allows authenticated users to access resources and only allows users to access resources about themselves. 
+- [ ] Users should have the ability to track at least **1** types of activities (i.e Nutrition, Exercise, Sleep, etc.). Each activity should be tracked on separate pages.
+- [ ] Deployed website with Heroku & Surge. 
+
+**Detailed Activity Page:**
+- [ ] The detailed activity page should display a feed of all previous tracked activities.
+- [ ] The detailed activity should contain a form to contain relevant information. (i.e if tracking nutrition this form allows the user to capture calories, timestamp, image, category, etc.) 
+- [ ] The activity tracked should be given a unique id for easy lookup.
+  `TODO://` Add link to table schema in the link code below. Your file should end in `.sql` and show your schema for the detailed activities table. (🚫 Remove this paragraph after adding schema link)
+  * [Table Schema](📝ADD LINK TO TABLE SCHEMA.sql HERE!) 
+
+### Stretch Features
+
+Implement any of the following features to improve the application:
+- [ ] Each model (`nutrition`, `exercise`, and `sleep`) should also implement a `fetchById` method that queries the database for a record by its id and only serves it to users who own that resource. Create a new dynamic route on the frontend that displays detail about a single record. For instance, `nutrition/detail/:id` should show a page with all the information about a single nutrition item.
+- [ ] Provide a dropdown that allows users to filter activity based on a certain attribute of any activity item.
+- [ ] Calculate aggregate statistics based on time periods - such as daily, weekly, monthly aggregates.
+- [ ] Create a page that shows all other users that use the life tracker application and allow users to follow each other.
+
+### Walkthrough Video
+
+`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after adding walkthrough video)
+
+`ADD_EMBEDDED_CODE_HERE`
+
+### Reflection
+
+* Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
+
+[Add your response here]
+
+* If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
+  
+[Add your response here]
+
+* Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
+
+[Add your response here]
+
+### Open-source libraries used
+
+- Add any links to open-source libraries used in your project.
+
+### Shout out
+
+Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+
+[Add your response here]
 
 ## Overview
 
@@ -259,7 +326,7 @@ The components in the `App.jsx` file should render the following components (alo
     - [X] Should render an element with the `className` of `hero`
       - [X] Inside it, display a large hero image using an `img` element with the `className` of `hero-img`
       - [ ] Render a brief blurb on what this application is about inside an element with the `className` of `cta`
-    - [ ] Should allow unauthenticated access
+    - [X] Should allow unauthenticated access
 
   - [ ] The **`activity`** context
 
@@ -441,7 +508,7 @@ Note that when developing the backend, SITE interns will be asked to write tests
 Here are the pieces of functionality that should be built out for the backend:
 
 - **Project setup**
-  - [ ] First things first, bootstrap the Express application with some essential files and starter code
+  - [X] First things first, bootstrap the Express application with some essential files and starter code
   - [X] Create a `.gitignore` file, an `app.js` file, an `app.test.js` file, and a `server.js` file
   - [X] Make sure `node_modules` are added to the `.gitignore` file.
   - [X] Add dependencies for `express@next`, `morgan`, `cors`, and `nodemon`
@@ -558,10 +625,10 @@ Here are the pieces of functionality that should be built out for the backend:
   - [ ] Add new directories for `models`, `routes`, and `middleware`
   - [ ] The **User** model
     - [X] In the `models` directory, create two new files: `models/user.js` and `models/user.test.js`
-      - [ ] The `User` model should have **at least** the following static methods:
-        - [ ] `login`
-        - [ ] `register`
-        - [ ] `fetchUserByEmail`
+      - [X] The `User` model should have **at least** the following static methods:
+        - [X] `login`
+        - [X] `register`
+        - [X] `fetchUserByEmail`
     - [ ] In the `models/user.test.js` file:
       - [ ] Test the `login` method. Write test cases for:
         - [ ] User can login successfully with proper credentials
