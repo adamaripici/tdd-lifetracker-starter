@@ -1,0 +1,25 @@
+.exercise {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.banner {
+    width: 100%;
+    display: flex;
+}
+.exerciseOverview .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.Button.outline.gold {
+    background: transparent;
+    color: #ffab09;
+    border: 1px solid #ffab09;
+}
+.exerciseOverview .header h3 {
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+}

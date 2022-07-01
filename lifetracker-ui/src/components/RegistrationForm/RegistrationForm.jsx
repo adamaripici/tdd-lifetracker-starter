@@ -1,8 +1,10 @@
 import * as React from "react"
 import "./RegistrationForm.css"
+import axios from "axios"
 
 export default function RegistrationForm({setAppState}) {
     const [errors, setErrors] = React.useState({})
+    const [isLoading, setIsLoading] = React.useState(false)
     const [input, setInput] = React.useState({
         email: "",
         username: "",
@@ -14,14 +16,14 @@ export default function RegistrationForm({setAppState}) {
 
     const handleOnInputChange = (event) => {
         if (event.target.name === "password") {
-            if (form.passwordConfirm && form.passwordConfirm !== event.target.value) {
+            if (input.passwordConfirm && input.passwordConfirm !== event.target.value) {
               setErrors((e) => ({ ...e, passwordConfirm: "Password's do not match" }))
             } else {
               setErrors((e) => ({ ...e, passwordConfirm: null }))
             }
           }
         if (event.target.name === "passwordConfirm") {
-            if (form.password && form.password !== event.target.value) {
+            if (input.password && input.password !== event.target.value) {
               setErrors((e) => ({ ...e, passwordConfirm: "Password's do not match" }))
             } else {
               setErrors((e) => ({ ...e, passwordConfirm: null }))
@@ -36,6 +38,43 @@ export default function RegistrationForm({setAppState}) {
         }
     
         setInput((f) => ({ ...f, [event.target.name]: event.target.value }))
+    }
+    const handleOnSubmit = async () => {
+      setIsLoading(true)
+      setErrors((e) => ({ ...e, input: null }))
+  
+      if (input.passwordConfirm !== input.password) {
+        setErrors((e) => ({ ...e, passwordConfirm: "Passwords do not match." }))
+        setIsLoading(false)
+        return
+      } else {
+        setErrors((e) => ({ ...e, passwordConfirm: null }))
+      }
+  
+      try {
+        const res = await axios.post("http://localhost:3001/auth/register", {
+          email: input.email,
+          username: input.username,
+          firstName: input.firstName,
+          lastName: input.lastName,
+          password: input.password,
+          passwordConfirm: input.passwordConfirm
+        })
+  
+        if (res?.data?.user) {
+          setAppState(res.data)
+          setIsLoading(false)
+          navigate("/activity")
+        } else {
+          setErrors((e) => ({ ...e, input: "Something went wrong with registration" }))
+          setIsLoading(false)
+        }
+      } catch (err) {
+        console.log(err)
+        const message = err?.response?.data?.error?.message
+        setErrors((e) => ({ ...e, input: message ? String(message) : String(err) }))
+        setIsLoading(false)
+      }
     }
     console.log(1,input.email)
     return (
@@ -107,7 +146,7 @@ export default function RegistrationForm({setAppState}) {
                 />
                 {errors.password && <span className="error">{errors.password}</span>}
            </div>
-           <button className="submit-registration" >Create Account</button>
+           <button className="submit-registration" onClick={handleOnSubmit} >Create Account</button>
         </div>
     )
 }

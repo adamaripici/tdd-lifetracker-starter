@@ -1,9 +1,11 @@
 import * as React from "react"
 import { useState } from "react";
-import { BrowserRouter, Routes, Route, Link, NavLink} from "react-router-dom"
+import { BrowserRouter, Routes, Route, Link, NavLink, useNavigate} from "react-router-dom"
+import axios from "axios"
 import "./LoginForm.css"
 
 export default function LoginForm({setAppState}) {
+    const navigate = useNavigate()
     const [errors, setErrors] = useState({})
     const [isLoading, setIsLoading] = useState(false)
     const [input, setInput] = useState({
@@ -23,6 +25,28 @@ export default function LoginForm({setAppState}) {
         setInput((f) => ({ ...f, [event.target.name]: event.target.value }))
     }
 
+    const handleOnSubmit = async (e) => {
+      e.preventDefault()
+      setIsLoading(true)
+      setErrors((e) => ({ ...e, input: null }))
+  
+      try {
+        const res = await axios.post(`http://localhost:3001/auth/login`, input)
+        if (res?.data) {
+          setAppState(res.data)
+          setIsLoading(false)
+          navigate("/activity")
+        } else {
+          setErrors((e) => ({ ...e, input: "Invalid username/password combination" }))
+          setIsLoading(false)
+        }
+      } catch (err) {
+        console.log(err)
+        const message = err?.response?.data?.error?.message
+        setErrors((e) => ({ ...e, input: message ? String(message) : String(err) }))
+        setIsLoading(false)
+      }
+    }
     // const loginUser = async (event) => {
     //     event.preventDefault()
     //     setIsLoading(true)
@@ -57,7 +81,7 @@ export default function LoginForm({setAppState}) {
                 {errors.password && <span className="error">{errors.password}</span>}
            </div>
 
-           <button className="submit-login" >Login</button>
+           <button className="submit-login" onClick={handleOnSubmit} >Login</button>
            <div className="footer">
             <p>
               Don't have an account? Sign up <Link to="/register">here</Link>

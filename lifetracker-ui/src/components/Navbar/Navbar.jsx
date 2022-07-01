@@ -14,9 +14,7 @@ export default function Navbar() {
                     />
                 </Link>
             </div>
-            <ul className="links">
                 <NavLink/>
-            </ul>
         </nav>
     )
 }

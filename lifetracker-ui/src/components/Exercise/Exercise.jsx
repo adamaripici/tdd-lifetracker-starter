@@ -14,7 +14,15 @@ export default function Exercise({ user, setAppState }) {
     if (isAuthenticated) {
         return (
             <div className="exercise">
-                Exercise
+                <div className="banner"><h1>Exercise</h1></div>
+                <div className="content">
+                    <div className="exerciseOverview">
+                        <div className="header">
+                            <h3>Overview</h3>
+                            <button className="Button outlune small outline gold">Add Exercise</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     } else {

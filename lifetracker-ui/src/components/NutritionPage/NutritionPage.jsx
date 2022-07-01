@@ -11,9 +11,19 @@ export default function NutritionPage({ user, setAppState }) {
         setAppState({})
         navigate("/")
     }
+    const button = isAuthenticated ? (
+        <button className="btn primary" onClick={handleOnLogout}>
+          Logout
+        </button>
+      ) : (
+        <Link to="/login">
+          <button className="btn primary">Login</button>
+        </Link>
+      )
     if (isAuthenticated) {
         return (
             <div className="nutrition-page">
+                <div className="footer">{button}</div>
                 Nutrition Page
             </div>
         )
