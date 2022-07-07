@@ -1,14 +1,14 @@
 const jwt = require("jsonwebtoken")
-const { builtinModules } = require("module")
 const {SECRET_KEY} = require("../config")
 
-const generateToken = (data) => jwt.sign(data, SECRET_KEY, { expiredIn: "24h" })
+const generateToken = (data) => jwt.sign(data, SECRET_KEY, { expiresIn: "24h" })
 
 const createUserJwt = (user) => {
     const payload = {
-        email: user.email,
-        isAdmin: user.isAdmin || false,
+        email: user.email
     }
+
+    return generateToken(payload)
 }
 
 const validateToken = (token) => {
@@ -20,7 +20,7 @@ const validateToken = (token) => {
     }
 }
 
-modules.exports = {
+module.exports = {
     generateToken,
     createUserJwt,
     validateToken
