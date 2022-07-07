@@ -4,16 +4,16 @@ const { BCRYPT_WORK_FACTOR } = require("../config")
 const { BadRequestError, UnauthorizedError } = require("../utils/errors")
 
 class User {
-    // static async makePublicUser(user) {
-    //     return {
-    //         id: user.id,
-    //         email: user.email,
-    //         username: user.username,
-    //         firstname: user.firstname,
-    //         lastname: user.lastname,
-    //         createdAt: user.created_at
-    //     }
-    // }
+    static async makePublicUser(user) {
+        return {
+            id: user.id,
+            email: user.email,
+            username: user.username,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            createdAt: user.created_at
+        }
+    }
     static async login(credentials) {
         // submit email and password
         //  Unknown email throws UnauthorizedError
@@ -30,7 +30,7 @@ class User {
         if (user) {
             const isValid = await bcrypt.compare(credentials.password, user.password)
             if (isValid) {
-                return user
+                return User.makePublicUser(user)
             }
         }
 
@@ -45,6 +45,10 @@ class User {
                 throw new BadRequestError(`Missing ${field} in request body.`)
             }
         })
+
+        if (credentials.email.indexOf("@") <= 0) {
+            throw new BadRequestError("Invalid email.")
+        }
 
         const existingUser = await User.fetchUserByEmail(credentials.email)
         if (existingUser) {
@@ -84,6 +88,21 @@ class User {
 
         return user
     }
+
+    static async fetchUserByUsername(username) {
+        if (!username) {
+          throw new BadRequestError("No username provided")
+        }
+    
+        const query = `SELECT * FROM users WHERE username = $1`
+    
+        const result = await db.query(query, [username])
+    
+        const user = result.rows[0]
+    
+        return user
+      }
+    
 }
 
 module.exports = User
