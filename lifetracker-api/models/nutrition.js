@@ -22,30 +22,33 @@ class Nutrition {
         return results.rows
     }
 
-    static async fetchNutritionById(nutritionId) {
-        const results = await db.query(
+    static async fetchNutritionById(id){
+        if(!id) {
+            throw new BadRequestError("Please provide ID")
+        }
+        const results = await db.query ( 
             `
             SELECT n.id,
-                   n.name,
-                   n.category,
-                   n.calories,
-                   n.quantity,
-                   n.image_url AS "imageUrl",
-                   n.user_id AS "userId",
-                   u.email AS "userEmail",
-                   n.created_at AS "createdAt"
+                n.name,
+                n.category,
+                n.calories,
+                n.quantity,
+                n.image_url AS "imageUrl",
+                u.email AS "userEmail",
+                n.user_id AS "userId",
+                n.created_at AS "createdAt"
             FROM nutrition AS n
                 JOIN users AS u ON u.id = n.user_id
             WHERE n.id = $1
-            `,[nutritionId]
-        )
-        const post = results.rows[0]
+            `,[id]
+            )
+    
 
-        if (!post) {
-            throw new NotFoundError()
+        const nutrition = results.rows[0]
+        if(!nutrition){
+            throw new NotFoundError
         }
-
-        return post
+        return nutrition
     }
 
     static async createNutrition({user, post}) {

@@ -29,7 +29,13 @@ export default function NewPostForm({ user, addPost, fruit }) {
       }
       if (data) {
       addPost(data.user)
-      setForm({ caption: "", imageUrl: "" })
+      setForm({
+         name: "", 
+         category: "",
+         calories: 0,
+         imageUrl: "",
+         quantity: 1
+        })
       }
     
       setIsLoading(false)

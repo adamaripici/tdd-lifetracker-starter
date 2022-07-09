@@ -1,6 +1,7 @@
 const express = require("express")
 const Nutrition = require("../models/nutrition")
 const security = require("../middleware/security")
+const permissions = require("../middleware/permissions")
 const router = express.Router()
 
 router.post("/", security.requireAuthenticatedUser, async (req, res, next) => {
@@ -25,12 +26,13 @@ router.get("/", async (req, res, next) => {
     }
 })
 
-router.get("/id/:nutritionId", async (req, res, next) => {
+router.get("/id/:nutritionId",security.requireAuthenticatedUser, async (req, res, next) => {
     try {
         // fetch single post
         const { nutritionId } = req.params
-        const post = await Nutrition.fetchNutritionById(nutritionId)
-        return res.status(200).json({post})
+        console.log(nutritionId)
+        const nutrition = await Nutrition.fetchNutritionById(nutritionId)
+        return res.status(200).json({nutrition})
     } catch(err) {
         next(err)
     }

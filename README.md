@@ -216,8 +216,8 @@ The components in the `App.jsx` file should render the following components (alo
           - [ ] If it does:
             - [ ] It should add that token to `ApiClient` class with the `setToken` method
             - [ ] Then, it should set the `isProcessing` state variable to `true` and the `error` state variable to `null`
-            - [ ] Next, it should send a `GET` request to the `/auth/me` endpoint
-              - [ ] If it fails, it should set the `error` prop to a valid error message
+            - [] Next, it should send a `GET` request to the `/auth/me` endpoint
+              - [] If it fails, it should set the `error` prop to a valid error message
               - [ ] If it is successful...
                 - [ ] It should set the `user` state variable with the `user` returned in the response
                 - [ ] It should set the `error` state variable to `null`
@@ -684,10 +684,10 @@ Here are the pieces of functionality that should be built out for the backend:
     - [ ] In the `app.js` file, add the `Authentication` header parsing middleware to the Express app's middleware pipeline
   - [ ] Commit all work to `git`
   - [ ] The **/auth** routes
-    - [ ] In the `routes` directory, create two new files: `routes/auth.js` and `routes/auth.test.js`
-      - [ ] A new Express router should be created. It should handle:
-        - [ ] A `GET` request to the `/me` endpoint
-          - [ ] It should send a JSON response back to the client with the user info like so: `{ "user": { "email": "user@gmail.com", ... } }`
+    - [X] In the `routes` directory, create two new files: `routes/auth.js` and `routes/auth.test.js`
+      - [X] A new Express router should be created. It should handle:
+        - [X] A `GET` request to the `/me` endpoint
+          - [X] It should send a JSON response back to the client with the user info like so: `{ "user": { "email": "user@gmail.com", ... } }`
         - [ ] A `POST` request to the `/login` endpoint
           - [ ] It should accept a request body with `email` and `password` keys
           - [ ] It should send a JSON response back to the client with a new JWT and user info like so: `{ "token": "e2c2...", "user": { "email": "user@gmail.com", ... } }`
@@ -723,17 +723,17 @@ Here are the pieces of functionality that should be built out for the backend:
 - **Resources and Permissions**
   - [ ] Next, implement the functionality to allow users to save instances of things they've drank/eaten, so that they can track their own nutrition data! Also make sure users can only access the data that they themselves have created. No other user should be able to see any data owned by another user!
   - [ ] The **Nutrition** model
-    - [ ] In the `models` directory, create two new files: `models/nutrition.js` and `models/nutrition.test.js`
-      - [ ] The `Nutrition` model should have **at least** the following static methods:
-        - [ ] `createNutrition`
-          - [ ] Should insert a new nutrition instance into the database when values are supplied for all of the required fields: `"name"`, `"category"`, `"calories"`, and `"image_url"`. The `quantity` field should default to `1`.
-          - [ ] The new nutrition instance should have its `user_id` field set to the `id` of the authenticated user
-          - [ ] Should throw a `BadRequestError` (`400` status code) or `UnprocessableEntityError` (`422` status code) when any of those values are not supplied.
-        - [ ] `fetchNutritionById`
-          - [ ] When supplied with a valid `id`, fetches the a nutrition instance from the database that matches that `id`.
-          - [ ] If no nutrition instance matches that `id`, throws a `NotFoundError` (`404` status code)
-        - [ ] `listNutritionForUser`
-          - [ ] Should list all nutrition instances in the database that are owned by a particular user
+    - [X] In the `models` directory, create two new files: `models/nutrition.js` and `models/nutrition.test.js`
+      - [X] The `Nutrition` model should have **at least** the following static methods:
+        - [X] `createNutrition`
+          - [X] Should insert a new nutrition instance into the database when values are supplied for all of the required fields: `"name"`, `"category"`, `"calories"`, and `"image_url"`. The `quantity` field should default to `1`.
+          - [X] The new nutrition instance should have its `user_id` field set to the `id` of the authenticated user
+          - [X] Should throw a `BadRequestError` (`400` status code) or `UnprocessableEntityError` (`422` status code) when any of those values are not supplied.
+        - [X] `fetchNutritionById`
+          - [X] When supplied with a valid `id`, fetches the a nutrition instance from the database that matches that `id`.
+          - [X] If no nutrition instance matches that `id`, throws a `NotFoundError` (`404` status code)
+        - [X] `listNutritionForUser`
+          - [X] Should list all nutrition instances in the database that are owned by a particular user
     - [ ] In the `models/nutrition.test.js` file:
       - [ ] Test the `createNutrition` method. Write test cases for:
         - [ ] A user can create a nutrition instance when they supply the appropriate values
@@ -746,9 +746,9 @@ Here are the pieces of functionality that should be built out for the backend:
         - [ ] Fetches all nutrition instances belonging to a particular user
         - [ ] Doesn't include any nutrition instances belonging to a different user
         - [ ] Returns an empty array if no nutrition instances are found in the database that belong to that user
-    - [ ] In the `models/nutrition.js` file:
-      - [ ] Implement the features outlined in the tests until they're all passing
-    - [ ] Commit all work to `git`
+    - [X] In the `models/nutrition.js` file:
+      - [X] Implement the features outlined in the tests until they're all passing
+    - [X] Commit all work to `git`
   - [ ] The **permissions** middleware
     - [ ] In the `middleware` directory, create two new files: `middleware/permissions.js` and `middleware/permissions.test.js`
       - [ ] Though more functions will need to be added here as the number of resources grows, for now only 1 function needs to be created.
@@ -770,15 +770,15 @@ Here are the pieces of functionality that should be built out for the backend:
       - [ ] Implement the features outlined in the tests until they're all passing
     - [ ] Commit all work to `git`
   - [ ] The **/nutrition** routes
-    - [ ] In the `routes` directory, create two new files: `routes/nutrition.js` and `routes/nutrition.test.js`
-      - [ ] A new Express router should be created that will be mounted at the `/nutrition` endpoint. It should handle:
-        - [ ] `GET` requests to the `/` endpoint
-          - [ ] It should send a JSON response back to the client with all of the user-owned nutrition instances in an array like so: `{ "nutritions": [...] }`
-        - [ ] `POST` requests to the `/` endpoint
-          - [ ] It should accept a request body with one `nutrition` key containing an object with all the attributes of the `nutrition` entry
-          - [ ] It should send a JSON response back to the client with a `201` status code, and the newly created nutrition instance like so: `{ "nutrition": { ... } }`
-        - [ ] `GET` requests to the `/:nutritionId` endpoint
-          - [ ] It should send a JSON response back to the client with the nutrition instance that matches the `:nutritionId` parameter like so: `{ "nutrition": { ... } }`
+    - [X] In the `routes` directory, create two new files: `routes/nutrition.js` and `routes/nutrition.test.js`
+      - [X] A new Express router should be created that will be mounted at the `/nutrition` endpoint. It should handle:
+        - [X] `GET` requests to the `/` endpoint
+          - [X] It should send a JSON response back to the client with all of the user-owned nutrition instances in an array like so: `{ "nutritions": [...] }`
+        - [X] `POST` requests to the `/` endpoint
+          - [X] It should accept a request body with one `nutrition` key containing an object with all the attributes of the `nutrition` entry
+          - [X] It should send a JSON response back to the client with a `201` status code, and the newly created nutrition instance like so: `{ "nutrition": { ... } }`
+        - [X] `GET` requests to the `/:nutritionId` endpoint
+          - [X] It should send a JSON response back to the client with the nutrition instance that matches the `:nutritionId` parameter like so: `{ "nutrition": { ... } }`
     - [ ] In the `routes/nutrition.test.js` file:
       - [ ] Test the `GET /nutrition` endpoint
         - [ ] Write test cases for:
