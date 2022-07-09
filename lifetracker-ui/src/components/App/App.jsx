@@ -16,7 +16,7 @@ import "./App.css"
 export default function App() {
   const [user, setUser] = useState({})
   const [error, setError] = useState()
-
+  const [posts, setPosts] = useState([])
   useEffect(() => {
     const fetchUser = async () => {
       const { data, err } = await apiClient.fetchUserFromToken()
@@ -32,7 +32,9 @@ export default function App() {
       fetchUser()
     }
   }, [])
-
+  const addPost = (newPost) => {
+    setPosts((oldPosts) => [newPost, ...oldPosts])
+  }
   const handleLogout = async () => {
     await apiClient.logoutUser()
     setUser({})
@@ -50,7 +52,7 @@ export default function App() {
             <Route path="/login" element={<LoginPage user={user} setUser={setUser} />}/>
             <Route path="/register" element={<RegistrationPage user={user} setUser={setUser} />}/>
             <Route path="/activity" element={user?.email ? (<ActivityPage/>) : (<NotFound/>)}/>
-            <Route path="/nutrition/*" element={user?.email ? (<NutritionPage user={user}/>) : (<NotFound/>)}/>
+            <Route path="/nutrition/*" element={user?.email ? (<NutritionPage user={user} addPost={addPost}/>) : (<NotFound/>)}/>
             
             <Route path="*" element={<NotFound/>}/>
           </Routes>
