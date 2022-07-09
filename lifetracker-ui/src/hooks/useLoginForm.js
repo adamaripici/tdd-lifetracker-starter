@@ -1,33 +1,12 @@
-import { useState, useEffect } from "react";
-import { useNavigate} from "react-router-dom"
+import { useState } from "react";
 import apiClient from "../services/apiClient"
+import {useAuthenticationForm} from "../hooks/useLoginForm"
 
 export const useLoginForm = ({ user, setUser }) => {
-    const navigate = useNavigate()
-    const [errors, setErrors] = useState({})
+    const { input, errors, setErrors, handleOnInputChange} = useAuthenticationForm({user})
     const [isLoading, setIsLoading] = useState(false)
-    const [input, setInput] = useState({
-        email: "",
-        password: "",
-    })
-    useEffect(() => {
-    // if user is already logged in,
-    // redirect them to the home page
-    if (user?.email) {
-      navigate("/")
-    }
-  }, [user, navigate])
-    const handleOnInputChange = (event) => {
-        if (event.target.name === "email") {
-          if (event.target.value.indexOf("@") === -1) {
-            setErrors((e) => ({ ...e, email: "Please enter a valid email." }))
-          } else {
-            setErrors((e) => ({ ...e, email: null }))
-          }
-        }
-    
-        setInput((f) => ({ ...f, [event.target.name]: event.target.value }))
-    }
+
+  
 
     const handleOnSubmit = async (e) => {
     //   e.preventDefault()

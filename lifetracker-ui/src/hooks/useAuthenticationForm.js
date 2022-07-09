@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate} from "react-router-dom"
-import apiClient from "../services/apiClient"
 
-export const useAuthenticationForm = ({user, setUser}) => {
+export const useAuthenticationForm = ({user}) => {
     const navigate = useNavigate()
     const [errors, setErrors] = React.useState({})
-    const [isLoading, setIsLoading] = React.useState(false)
     const [input, setInput] = React.useState({
         email: "",
         username: "",
@@ -50,6 +48,9 @@ export const useAuthenticationForm = ({user, setUser}) => {
     }
     
     return {
-        
+        form,
+        errors,
+        setErrors,
+        handleOnInputChange
     }
 }
