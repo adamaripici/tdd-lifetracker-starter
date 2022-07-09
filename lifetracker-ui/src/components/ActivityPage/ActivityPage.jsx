@@ -1,5 +1,5 @@
 import * as React from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link} from "react-router-dom"
 import "./ActivityPage.css"
 import AccessForbidden from "../AccessForbidden/AccessForbidden"
 
@@ -56,7 +56,7 @@ export default function ActivityPage({ user, setAppState }) {
     } else {
         return (
             <div>
-                <AccessForbidden setAppState={setAppState}/>
+                {/* <AccessForbidden setAppState={setAppState}/> */}
             </div>
         )
     }
