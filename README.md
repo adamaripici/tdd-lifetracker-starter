@@ -18,14 +18,14 @@ Deployed Application: [Lifetracker Deployed Site](ADD_LINK_HERE)
 - [X] **Registration Page:** A form that allows the user to sign up with their email, password, username, first name, and last name.
 - [X] When a user first authenticates, they should be redirected to an authenticated view (i.e the detailed activity page). When they sign out, all frontend data should be reset.
 - [X] Users have access to an overview Activity page that show one summary statistic about each of the 3 types of activity tracked.
-- [ ] The API should have a `security` middleware that only allows authenticated users to access resources and only allows users to access resources about themselves. 
-- [ ] Users should have the ability to track at least **1** types of activities (i.e Nutrition, Exercise, Sleep, etc.). Each activity should be tracked on separate pages.
+- [X] The API should have a `security` middleware that only allows authenticated users to access resources and only allows users to access resources about themselves. 
+- [X] Users should have the ability to track at least **1** types of activities (i.e Nutrition, Exercise, Sleep, etc.). Each activity should be tracked on separate pages.
 - [ ] Deployed website with Heroku & Surge. 
 
 **Detailed Activity Page:**
 - [ ] The detailed activity page should display a feed of all previous tracked activities.
 - [ ] The detailed activity should contain a form to contain relevant information. (i.e if tracking nutrition this form allows the user to capture calories, timestamp, image, category, etc.) 
-- [ ] The activity tracked should be given a unique id for easy lookup.
+- [X] The activity tracked should be given a unique id for easy lookup.
   `TODO://` Add link to table schema in the link code below. Your file should end in `.sql` and show your schema for the detailed activities table. (🚫 Remove this paragraph after adding schema link)
   * [Table Schema](📝ADD LINK TO TABLE SCHEMA.sql HERE!) 
 
@@ -37,7 +37,8 @@ Implement any of the following features to improve the application:
 - [ ] Calculate aggregate statistics based on time periods - such as daily, weekly, monthly aggregates.
 - [ ] Create a page that shows all other users that use the life tracker application and allow users to follow each other.
 
-### Walkthrough Video
+### Walkthrough Video![ezgif com-gif-maker (17)](https://user-images.githubusercontent.com/55006272/178084512-9decca84-30d1-4bce-aa6d-ce65c6bb0ddb.gif)
+
 
 `TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after adding walkthrough video)
 ![ezgif com-gif-maker (16)](https://user-images.githubusercontent.com/55006272/176973437-765f2a60-b9c3-4203-8b4d-dcbddb2a6233.gif)

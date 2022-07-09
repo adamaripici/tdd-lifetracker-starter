@@ -8,7 +8,7 @@ const authedUserOwnsNutrition = async (req, res, next) => {
     const nutrition = await Nutrition.fetchNutritionById(nutritionId)
 
  
-    if (nutrition.email != user.email) {
+    if (nutrition.email !== user.email) {
       throw new ForbiddenError("User is not allowed to fetch nutrition for other users' listings.")
     }
 
