@@ -32,10 +32,15 @@ Deployed Application: [Lifetracker Deployed Site](ADD_LINK_HERE)
 ### Stretch Features
 
 Implement any of the following features to improve the application:
-- [ ] Each model (`nutrition`, `exercise`, and `sleep`) should also implement a `fetchById` method that queries the database for a record by its id and only serves it to users who own that resource. Create a new dynamic route on the frontend that displays detail about a single record. For instance, `nutrition/detail/:id` should show a page with all the information about a single nutrition item.
+- [X] Each model (`nutrition`, `exercise`, and `sleep`) should also implement a `fetchById` method that queries the database for a record by its id and only serves it to users who own that resource. Create a new dynamic route on the frontend that displays detail about a single record. For instance, `nutrition/detail/:id` should show a page with all the information about a single nutrition item.
 - [ ] Provide a dropdown that allows users to filter activity based on a certain attribute of any activity item.
 - [ ] Calculate aggregate statistics based on time periods - such as daily, weekly, monthly aggregates.
 - [ ] Create a page that shows all other users that use the life tracker application and allow users to follow each other.
+
+Week 5 Video:
+
+![ezgif com-gif-maker (18)](https://user-images.githubusercontent.com/55006272/178191946-01abd471-001d-445d-97a4-565916e0bda0.gif)
+
 
 ### Walkthrough Video![ezgif com-gif-maker (17)](https://user-images.githubusercontent.com/55006272/178084512-9decca84-30d1-4bce-aa6d-ce65c6bb0ddb.gif)
 
