@@ -5,7 +5,7 @@ import NewPostForm from "components/NewPostForm/NewPostForm";
 export default function NutritionOverview(props) {
     return (
         <div className="NutritionOverview">
-            <NewPostForm user = {props.user} fruit={props.fruit} setFruit={setFruit}/>
+            <NewPostForm user = {props.user} fruit={props.fruit} setFruit={props.setFruit} addPost={props.addPost}/>
         </div>
     )
 }

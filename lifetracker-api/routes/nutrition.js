@@ -4,7 +4,7 @@ const security = require("../middleware/security")
 const permissions = require("../middleware/permissions")
 const router = express.Router()
 
-router.post("/", security.requireAuthenticatedUser,permissions.authedUserOwnsNutrition, async (req, res, next) => {
+router.post("/", security.requireAuthenticatedUser, async (req, res, next) => {
     try {
         // create a nutrition post
         const { user } = res.locals
@@ -19,14 +19,15 @@ router.post("/", security.requireAuthenticatedUser,permissions.authedUserOwnsNut
 router.get("/", security.requireAuthenticatedUser,async (req, res, next) => {
     try {
         //list all nutrition
-        const posts = await Nutrition.listNutritionForUser()
+        const {user} = res.locals;
+        const posts = await Nutrition.listNutritionForUser({user})
         return res.status(200).json({posts})
     } catch(err) {
         next(err)
     }
 })
 
-router.get("/id/:nutritionId",security.requireAuthenticatedUser, permissions.authedUserOwnsNutrition, async (req, res, next) => {
+router.get("/id/:nutritionId", async (req, res, next) => {
     try {
         // fetch single post
         const { nutritionId } = req.params

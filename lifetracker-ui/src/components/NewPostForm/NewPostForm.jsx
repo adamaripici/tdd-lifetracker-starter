@@ -2,10 +2,12 @@ import { useState } from "react"
 import apiClient from "../../services/apiClient"
 import AccessForbidden from "../AccessForbidden/AccessForbidden"
 import "./NewPostForm.css"
+import {useNavigate} from 'react-router-dom';
 
 export default function NewPostForm({ user, addPost, fruit }) {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
+  const navigate = useNavigate()
   const [form, setForm] = useState({
     name: "",
     category: "",
@@ -37,9 +39,8 @@ export default function NewPostForm({ user, addPost, fruit }) {
          quantity: 1
         })
       }
-    
       setIsLoading(false)
-    
+      navigate("/nutrition");
   }
   
   const renderForm = () => {

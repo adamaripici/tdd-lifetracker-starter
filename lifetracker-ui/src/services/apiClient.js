@@ -52,6 +52,9 @@ class ApiClient {
   async fetchUserFromToken() {
     return await this.request({ endpoint: `auth/me`, method: `GET` })
   }
+  async fetchActivity() {
+    return await this.request({ endpoint: `activity`, method: `GET` })
+  }
 
   async signupUser(credentials) {
     return await this.request({ endpoint: `auth/register`, method: `POST`, data: credentials })

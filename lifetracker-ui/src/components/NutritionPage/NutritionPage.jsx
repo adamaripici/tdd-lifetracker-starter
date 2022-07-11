@@ -13,10 +13,10 @@ export default function NutritionPage(props) {
         return (
             <div className="nutrition-page">
                 <h1 className="intro">Nutrition Page</h1>
-                <NewPostForm user = {props.user} addPost={props.addPost} fruit={props.fruit} setFruit={setFruit}/>
+                {/* <NewPostForm user = {props.user} addPost={props.addPost} fruit={props.fruit} setFruit={setFruit}/> */}
                 <Routes>
-                    <Route path="/" element={<NutritionOverview user={props.user} fruit={fruit}/>}/>
-                    <Route path="/create" element={<NutritionNew  user={props.user} fruit={fruit} setFruit={setFruit} />}/>
+                    <Route path="/" element={<NutritionOverview user={props.user} fruit={props.fruit}/>}/>
+                    <Route path="/create" element={<NutritionNew  user={props.user} fruit={props.fruit} setFruit={props.setFruit} addPost={props.addPost} />}/>
                     <Route path="/id/:nutritionId" element={<NutritionDetail user={props.user} />}/>
                     <Route path="/*" element={<AccessForbidden/>}/>
                 </Routes>

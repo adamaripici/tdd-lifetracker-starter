@@ -22,11 +22,14 @@ export default function NutritionFeed(props) {
   }, []);
   return (
     <div className="nutrition-feed">
+
+      <div>
         {nutrition.map((item) => {return(
             <Link to={`id/`+item.id}>
                 <NutritionCard key={item.name} quantity={item.quantity} name={item.name} calories={item.calories} imageUrl={item.imageUrl} category={item.category} id={item.id}/>
             </Link>
         )})}
+      </div>
     </div>
   )
 }

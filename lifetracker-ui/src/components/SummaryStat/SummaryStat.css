@@ -1,0 +1,41 @@
+.SummaryStat p {
+    color: #ffffff;
+    font-size: 20px;
+}
+.SummaryStat.gold {
+    background: #573f0d;
+}
+.main {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 35px;
+    grid-gap: 15px;
+    gap: 15px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    margin: auto;
+    
+}
+.background {
+    mix-blend-mode: normal;
+    justify-content: space-around;
+    padding: 16px 32px;
+    width: 360px;
+    height: 220px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+.SummaryStat.purple {
+    background: #183a1d;
+}
+.SummaryStat h1 {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 100;
+    margin: 0;
+    padding: 0;
+}

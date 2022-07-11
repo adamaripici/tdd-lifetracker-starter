@@ -6,7 +6,7 @@ export default function LoginPage({ user, setUser }) {
     return (
         <div className="login-page">
             <div className="card">Login</div>
-            <LoginForm user={user} setUser={setUser} />
+            <LoginForm/>
         </div>
     )
 }

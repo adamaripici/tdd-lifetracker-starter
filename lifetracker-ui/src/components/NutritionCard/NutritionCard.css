@@ -1,3 +1,28 @@
 .nutrition-image {
     width: 200px;
 }
+.nutrition-card {
+    flex-direction: column;
+    width: 360px;
+    height: 290px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    padding: 16px 32px;
+    background: #3d2b11;
+    box-sizing: border-box;
+    grid-gap: -30px;
+    display: flex;
+    margin-top: 35px;
+}
+.nutrition-text {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin: 0;
+    padding: 0;
+
+}

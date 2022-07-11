@@ -2,7 +2,7 @@ const db = require("../db")
 const { BadRequestError, NotFoundError } = require("../utils/errors")
 
 class Nutrition {
-    static async listNutritionForUser() {
+    static async listNutritionForUser({user}) {
         const results = await db.query(
             `
             SELECT n.id,
@@ -16,8 +16,9 @@ class Nutrition {
                    n.created_at AS "createdAt"
             FROM nutrition AS n
                 JOIN users AS u ON u.id = n.user_id
+            WHERE n.user_id = (SELECT users.id FROM users WHERE email = $1)
             ORDER BY n.created_at DESC
-            `
+            `,[user.email]
         )
         return results.rows
     }

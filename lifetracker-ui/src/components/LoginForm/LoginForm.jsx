@@ -2,8 +2,9 @@ import "./LoginForm.css"
 import { Link } from "react-router-dom"
 import { useLoginForm } from "../../hooks/useLoginForm"
 
-export default function LoginForm({ user, setUser }) {
-   const { input, errors, isLoading, handleOnInputChange, handleOnSubmit } = useLoginForm({ user, setUser})
+
+export default function LoginForm() {
+   const { input, errors, isLoading, handleOnInputChange, handleOnSubmit } = useLoginForm()
 
     return (
         <div className="login-form">

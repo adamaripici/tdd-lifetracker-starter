@@ -8,13 +8,21 @@ import RegistrationPage from "../RegistrationPage/RegistrationPage"
 import ActivityPage from "../ActivityPage/ActivityPage"
 import NutritionPage from "../NutritionPage/NutritionPage"
 import NotFound from "../NotFound/NotFound"
-import Exercise from "../Exercise/Exercise"
+import { AuthContextProvider, useAuthContext } from "../../contexts/auth"
 import Sleep from "../Sleep/Sleep"
 import apiClient from "../../services/apiClient"
 import "./App.css"
 
-export default function App() {
-  const [user, setUser] = useState({})
+export default function AppContainter() {
+  return (
+    <AuthContextProvider>
+      <App/>
+    </AuthContextProvider>
+  )
+}
+
+function App() {
+  const {user, setUser} = useAuthContext()
   const [error, setError] = useState()
   const [posts, setPosts] = useState([])
   useEffect(() => {

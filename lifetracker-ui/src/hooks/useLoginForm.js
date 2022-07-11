@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState } from "react"
 import apiClient from "../services/apiClient"
-import {useAuthenticationForm} from "../hooks/useLoginForm"
+import {useAuthenticationForm} from "../hooks/useAuthenticationForm"
+import { useAuthContext } from "../contexts/auth"
 
-export const useLoginForm = ({ user, setUser }) => {
+export const useLoginForm = () => {
+  const {user, setUser } = useAuthContext()
     const { input, errors, setErrors, handleOnInputChange} = useAuthenticationForm({user})
     const [isLoading, setIsLoading] = useState(false)
-
-  
 
     const handleOnSubmit = async (e) => {
     //   e.preventDefault()

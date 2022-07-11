@@ -3,8 +3,8 @@ import { useNavigate} from "react-router-dom"
 
 export const useAuthenticationForm = ({user}) => {
     const navigate = useNavigate()
-    const [errors, setErrors] = React.useState({})
-    const [input, setInput] = React.useState({
+    const [errors, setErrors] = useState({})
+    const [input, setInput] = useState({
         email: "",
         username: "",
         firstname: "",
@@ -48,7 +48,7 @@ export const useAuthenticationForm = ({user}) => {
     }
     
     return {
-        form,
+        input,
         errors,
         setErrors,
         handleOnInputChange

@@ -1,8 +1,10 @@
 import * as React from "react"
 import apiClient from "../services/apiClient"
-import {useAuthenticationForm} from "../hooks/useLoginForm"
+import {useAuthenticationForm} from "../hooks/useAuthenticationForm"
+import { useAuthContext } from "../contexts/auth"
 
-export const useRegistrationForm = ({user, setUser}) => {
+export const useRegistrationForm = () => {
+  const {user, setUser } = useAuthContext()
     const { input, errors, setErrors, handleOnInputChange} = useAuthenticationForm({user})
     const [isLoading, setIsLoading] = React.useState(false)
     

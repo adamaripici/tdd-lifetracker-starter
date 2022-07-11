@@ -3,8 +3,8 @@ import "./RegistrationForm.css"
 import { Link } from "react-router-dom"
 import { useRegistrationForm } from "../../hooks/useRegistrationForm"
 
-export default function RegistrationForm({ user, setUser }) {
-  const {input, errors, isLoading, handleOnInputChange, handleOnSubmit} = useRegistrationForm({user, setUser})
+export default function RegistrationForm() {
+  const {input, errors, isLoading, handleOnInputChange, handleOnSubmit} = useRegistrationForm()
     
     return (
         <div className="registration-form">
